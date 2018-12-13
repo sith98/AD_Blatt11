@@ -6,7 +6,7 @@ enum Color {
     WHITE, GREY, BLACK
 }
 
-public class Aufgabe2 {
+public class Aufgabe2And4_1 {
     private static boolean[][] matrix = Arrays.stream(new String[]{
         "011000100",
         "000100000",
@@ -75,9 +75,41 @@ public class Aufgabe2 {
         colors[vertex] = Color.BLACK;
     }
 
+    private static boolean findCycle() {
+        for (int vertex = 0; vertex < matrix[0].length; vertex++) {
+            Color[] colors = new Color[matrix[0].length];
+            for (int i = 0; i < colors.length; i++) {
+                colors[i] = Color.WHITE;
+            }
+            if (_findCycle(vertex, colors)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean _findCycle(int vertex, Color[] colors) {
+        colors[vertex] = Color.GREY;
+        for (int j = 0; j < matrix[vertex].length; j++) {
+            if (matrix[vertex][j]) {
+                if (colors[j] == Color.WHITE) {
+                    if (_findCycle(j, colors)) {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            }
+        }
+        colors[vertex] = Color.BLACK;
+        return false;
+    }
+
     public static void main(String[] args) {
         breadthFirst(0);
         System.out.println();
         depthFirst(0);
+
+        System.out.println(findCycle());
     }
 }
