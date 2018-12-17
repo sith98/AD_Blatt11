@@ -1,0 +1,40 @@
+Aufgabe 1:
+A^k gibt die Anzahl aller Pfade zwischen zwei Knoten mit Länge k an.
+
+
+Aufgabe 3:
+In der Diagonale steht die Summe aller aus- und eingehenden Kanten am entsprechenden Knoten
+In jeder andere Zelle c_ij steht -1, wenn eine Kante (i,j) oder eine Kante (j,i) existiert (0 sonst).
+
+
+Aufgabe 4.2:
+
+zähler = 0
+
+O(|V|)
+für jeden Knoten v:
+    v.grad = 0
+
+O(|E|)
+für jede Kante (v, u):
+    u.grad = u.grad + 1
+
+Erstelle Queue q
+
+O(|V|)
+für jeden Knoten v:
+    wenn v.grad = 0:
+        q.enqueue(v)
+
+O(|E|)
+solange q != {}:
+    v = q.dequeue()
+    v.position = zähler
+    zähler = zähler + 1
+    für alle Knoten u, für die eine Kante (v, u) existiert:
+        u.grad = u.grad - 1
+        wenn u.grad = 0:
+            q.enqueue(u)
+
+Wenn Zyklus vorliegt, ist q leer, obwohl noch nicht alle Knoten abgelaufen wurden.
+Es werden nicht alle Knoten durchnummeriert.
