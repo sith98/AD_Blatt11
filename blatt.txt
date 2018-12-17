@@ -4,7 +4,10 @@ A^k gibt die Anzahl aller Pfade zwischen zwei Knoten mit Länge k an.
 
 Aufgabe 3:
 In der Diagonale steht die Summe aller aus- und eingehenden Kanten am entsprechenden Knoten
-In jeder andere Zelle c_ij steht -1, wenn eine Kante (i,j) oder eine Kante (j,i) existiert (0 sonst).
+In jeder andere Zelle c_ij steht:
+-1, wenn eine der beiden Kanten (i,j) und (j,i) existiert,
+-2, wenn beide existieren,
+0, sonst.
 
 
 Aufgabe 4.2:
